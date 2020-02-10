@@ -59,7 +59,6 @@ Add additional notes about how to deploy this on a live system
 ## Built With
 
 * [React](https://reactjs.org/docs) - The web framework used
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
