@@ -1,7 +1,13 @@
-import Geolocation from '@react-native-community/geolocation';
-import DataLoader from '../dataloader'
+import Geolocation from '@react-native-community/geolocation'
 
-Geolocation.getCurrentPosition((info) => {
-  debugger
-  console.log(info)
-});
+export const getCurrentPosition = () => new Promise((resolve, reject) => {
+  try {
+    Geolocation.getCurrentPosition((info) => {
+      resolve(info)
+    })
+  } catch (error) {
+    reject(error)
+  }
+})
+
+getCurrentPosition().then(console.log)
