@@ -13,6 +13,10 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line import/no-cycle
+import { navigationRef } from '../../routing/MainStackNavigator'
+
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: Colors.lighter,
@@ -58,6 +62,8 @@ const styles = StyleSheet.create({
 
 export class Map extends PureComponent<any, any> {
   render () {
+    console.log('MAP navigationRef')
+    console.log(navigationRef)
     return (
       <>
         <StatusBar barStyle='dark-content' />

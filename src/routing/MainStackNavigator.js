@@ -1,5 +1,5 @@
 
-import React, { memo } from 'react'
+import React, { PureComponent } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 // import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -10,8 +10,17 @@ import { config as routingConfig } from './routingConfig'
 // const Stack = createStackNavigator()
 const Stack = createBottomTabNavigator()
 
-export const MainStackNavigator = memo(() => (
-  <NavigationContainer>
-    {routingFactory(Stack.Navigator, Stack.Screen, routingConfig)}
-  </NavigationContainer>
-))
+export const navigationRef = React.createRef()
+export class MainStackNavigator extends PureComponent {
+  render () {
+    // eslint-disable-next-line no-console
+    console.log('navigationRef')
+    // eslint-disable-next-line no-console
+    console.log(navigationRef)
+    return (
+      <NavigationContainer ref={navigationRef}>
+        {routingFactory(Stack.Navigator, Stack.Screen, routingConfig)}
+      </NavigationContainer>
+    )
+  }
+}
