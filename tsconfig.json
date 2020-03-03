@@ -14,7 +14,8 @@
     "target": "es5"
   },
   "include": [
-    "packages/app/src"
+    "src/**/*.*",
+    "src/.d.ts"
   ],
   "exclude": [
     "src/**/*.test.ts*",

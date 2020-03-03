@@ -1,22 +1,9 @@
 
-import * as React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
+import React, { memo } from 'react'
 
-import { Home } from './modules/home/Home'
-import { Location } from './modules/location/Location'
+import { MainStackNavigator } from './routing/MainStackNavigator'
 
-const Stack = createStackNavigator()
-
-function App () {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='Location' component={Location} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
-}
+// TODO add redux
+const App = memo(() => <MainStackNavigator />)
 
 export default App

@@ -58,10 +58,13 @@ const styles = StyleSheet.create({
   },
 })
 
-export class Location extends PureComponent {
-  state = {
+type LocationState = {
+  location?: any
+  items?: Array<any>
+}
 
-  }
+export class Location extends PureComponent<any, LocationState> {
+  state: LocationState = {}
 
   async componentDidMount () {
     const location = await getCurrentPosition()
