@@ -1,5 +1,7 @@
 import { Home } from '../modules/home/Home'
-import { Location } from '../modules/location/Location'
+import { LocationStack } from '../modules/location/LocationStack'
+// import { Location } from '../modules/location/Location'
+// import { Map } from '../modules/location/Map'
 
 export const config = {
   initialRouteName: 'Home',
@@ -8,9 +10,17 @@ export const config = {
       name: 'Home',
       component: Home,
     },
+    // {
+    //   name: 'Location',
+    //   component: Location,
+    // },
+    // {
+    //   name: 'Map',
+    //   component: Map,
+    // },
     {
-      name: 'Location',
-      component: Location,
+      name: 'LocationStack',
+      component: LocationStack,
     },
   ],
 }

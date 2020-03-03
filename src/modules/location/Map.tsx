@@ -5,7 +5,6 @@ import {
   ScrollView,
   View,
   Text,
-  Button,
   StatusBar,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   FlatList,
@@ -13,10 +12,6 @@ import {
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
-
-import { getCurrentPosition } from '../../geolocation'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { load } from '../../dataloader'
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -61,26 +56,8 @@ const styles = StyleSheet.create({
   },
 })
 
-type LocationState = {
-  location?: any
-  items?: Array<any>
-}
-
-export class Location extends PureComponent<any, LocationState> {
-  state: LocationState = {}
-
-  async componentDidMount () {
-    const location = await getCurrentPosition()
-    const items = await load()
-    this.setState(() => ({ location, items }))
-  }
-
-  gotoMap = () => {
-    this.props.navigation.navigate('Map')
-  }
-
+export class Map extends PureComponent<any, any> {
   render () {
-    const { location, items } = this.state
     return (
       <>
         <StatusBar barStyle='dark-content' />
@@ -89,29 +66,13 @@ export class Location extends PureComponent<any, LocationState> {
             contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}
           >
-            <Text style={styles.header}> LOCATION </Text>
-            <Button
-              title='Go to Map'
-              onPress={this.gotoMap}
-            />
+            <Text style={styles.header}>MAP</Text>
+
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>Location</Text>
                 <Text style={styles.sectionDescription}>
-                  {JSON.stringify(location)}
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Items</Text>
-                <Text style={styles.sectionDescription}>
-                  {JSON.stringify(items)}
-                </Text>
-              </View>
-
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Learn More</Text>
-                <Text style={styles.sectionDescription}>
-                  Read the docs to discover what to do next:
+                  MAP
                 </Text>
               </View>
             </View>
