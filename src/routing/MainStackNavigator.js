@@ -11,6 +11,9 @@ import { config as routingConfig } from './routingConfig'
 const Stack = createBottomTabNavigator()
 
 export const navigationRef = React.createRef()
+
+export const navigate = (name, params) => navigationRef.current?.navigate(name, params)
+
 export class MainStackNavigator extends PureComponent {
   render () {
     // eslint-disable-next-line no-console
