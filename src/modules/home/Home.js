@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -17,6 +16,8 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'
+
+import { GenericSafeAreaView } from '../../components/common/GenericSafeAreaView'
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -66,7 +67,7 @@ export class Home extends PureComponent {
     return (
       <>
         <StatusBar barStyle='dark-content' />
-        <SafeAreaView>
+        <GenericSafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}
@@ -111,7 +112,7 @@ export class Home extends PureComponent {
               <LearnMoreLinks />
             </View>
           </ScrollView>
-        </SafeAreaView>
+        </GenericSafeAreaView>
       </>
     )
   }

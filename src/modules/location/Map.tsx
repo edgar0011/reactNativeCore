@@ -1,21 +1,22 @@
 import React, { PureComponent } from 'react'
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
   StatusBar,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  FlatList,
+  Button,
+  Dimensions,
 } from 'react-native'
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
+import MapView from 'react-native-maps'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // eslint-disable-next-line import/no-cycle
-import { navigationRef } from '../../routing/MainStackNavigator'
+import { navigate } from '../../routing/MainStackNavigator'
+import { GenericSafeAreaView } from '../../components/common/GenericSafeAreaView'
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -58,32 +59,70 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  container: {
+    position: 'relative',
+    width: '100%',
+    minHeight: 300,
+    height: Dimensions.get('window').height * 0.6,
+  },
+  map: {
+    position: 'absolute',
+    flex: 1,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 })
 
 export class Map extends PureComponent<any, any> {
+  gotoLocation = () => {
+    navigate('Location')
+  }
+
   render () {
-    console.log('MAP navigationRef')
-    console.log(navigationRef)
+    const { params, navigation, route, ...props } = this.props
+    console.log('Map')
+    console.log('params, navigation, route, ...props ')
+    console.log(params, navigation, route, props)
+    const coords = route?.params?.location?.coords
+    console.log('coords')
+    console.log(coords)
+    const newRegion = {
+      longitude: coords.longitude,
+      latitude: coords.latitude,
+      longitudeDelta: 0,
+      latitudeDelta: 0,
+    }
     return (
       <>
         <StatusBar barStyle='dark-content' />
-        <SafeAreaView>
+        <GenericSafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}
           >
-            <Text style={styles.header}>MAP</Text>
-
+            <Button
+              title='Go to Location'
+              onPress={this.gotoLocation}
+            />
             <View style={styles.body}>
               <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Location</Text>
+                <Text style={styles.sectionTitle}>Map</Text>
                 <Text style={styles.sectionDescription}>
                   MAP
                 </Text>
               </View>
             </View>
+            <View style={styles.container}>
+              <MapView
+                style={styles.map}
+                region={newRegion}
+              />
+            </View>
+            <Text>{JSON.stringify(coords)}</Text>
           </ScrollView>
-        </SafeAreaView>
+        </GenericSafeAreaView>
       </>
     )
   }

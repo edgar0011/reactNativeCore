@@ -1,6 +1,5 @@
-import React, { PureComponent } from 'react'
+import React, { memo, PureComponent } from 'react'
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -14,6 +13,7 @@ import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
 
+import { GenericSafeAreaView } from '../../components/common/GenericSafeAreaView'
 import { getCurrentPosition } from '../../geolocation'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { load } from '../../dataloader'
@@ -59,12 +59,62 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     textAlign: 'right',
   },
+  item: {
+    padding: 8,
+    marginVertical: 2,
+    marginHorizontal: 4,
+    alignItems: 'flex-start',
+  },
+  title: {
+    fontSize: 16,
+  },
+  titleSMall: {
+    fontSize: 12,
+  },
+  itemText: {
+    flex: 1,
+    backgroundColor: '#EFEFEF',
+    alignSelf: 'stretch',
+    margin: 6,
+  },
+  text: {
+    fontSize: 10,
+    margin: 4,
+  },
 })
 
 type LocationState = {
   location?: any
   items?: Array<any>
 }
+
+type ItemProps = {
+  name: string
+  username: string
+  email: string
+  address: {
+    street: string
+    city: string
+    zipcode: string
+  }
+  right: boolean
+}
+
+const Item = memo<ItemProps>(({ name, username, email, address, right }) => (
+  <View style={[styles.item, { alignItems: right ? 'flex-end' : 'flex-start' }]}>
+    <Text style={styles.title}>{name} ({username})</Text>
+    <View style={[styles.itemText, { alignItems: right ? 'flex-end' : 'flex-start' }]}>
+      <Text style={styles.text}>{email}</Text>
+      <Text style={styles.text}>{address?.street}</Text>
+      <Text style={styles.text}>{address?.city}, {address?.zipcode}</Text>
+    </View>
+  </View>
+))
+const keyExtractor = ({ id }) => id
+
+const renderItem = ({ item, index }) => (
+  <Item {...item} right={index % 2 === 0} />
+)
 
 export class Location extends PureComponent<any, LocationState> {
   state: LocationState = {}
@@ -76,7 +126,7 @@ export class Location extends PureComponent<any, LocationState> {
   }
 
   gotoMap = () => {
-    this.props.navigation.navigate('Map')
+    this.props.navigation.navigate('Map', { location: this.state.location })
   }
 
   render () {
@@ -84,7 +134,7 @@ export class Location extends PureComponent<any, LocationState> {
     return (
       <>
         <StatusBar barStyle='dark-content' />
-        <SafeAreaView>
+        <GenericSafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}
@@ -103,20 +153,15 @@ export class Location extends PureComponent<any, LocationState> {
               </View>
               <View style={styles.sectionContainer}>
                 <Text style={styles.sectionTitle}>Items</Text>
-                <Text style={styles.sectionDescription}>
-                  {JSON.stringify(items)}
-                </Text>
-              </View>
-
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Learn More</Text>
-                <Text style={styles.sectionDescription}>
-                  Read the docs to discover what to do next:
-                </Text>
+                <FlatList
+                  data={items}
+                  renderItem={renderItem}
+                  keyExtractor={keyExtractor}
+                />
               </View>
             </View>
           </ScrollView>
-        </SafeAreaView>
+        </GenericSafeAreaView>
       </>
     )
   }
