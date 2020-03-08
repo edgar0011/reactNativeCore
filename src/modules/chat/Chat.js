@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { memo, PureComponent } from 'react'
 import {
   StyleSheet,
@@ -6,15 +7,18 @@ import {
   Text,
   StatusBar,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  FlatList,
-  TextInput,
+  FlatList, TextInput,
+  Platform,
+  KeyboardAvoidingView,
   Button,
 } from 'react-native'
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
+import { GiftedChat } from 'react-native-gifted-chat'
 
 import { GenericSafeAreaView } from '../../components/common/GenericSafeAreaView'
+import { firebaseService } from '../../dataloader/firebase'
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -59,6 +63,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
   },
+  chat: {
+    flex: 1,
+    width: '100%',
+    height: 250,
+  },
 })
 
 const items = [
@@ -88,6 +97,44 @@ const keyExtractor = ({ id }) => id
 const renderItem = ({ item }) => <Item title={item.title} />
 
 export class Chat extends PureComponent<any, any> {
+  state = {
+    messages: [],
+  }
+
+  componentDidMount () {
+    this.setState({
+      messages: [
+        {
+          _id: 1,
+          text: 'Hello developer',
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: 'React Native',
+            avatar: 'https://placeimg.com/140/140/any',
+          },
+        },
+      ],
+    })
+  }
+
+  onSend = (messages = []) => {
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }))
+  }
+
+  get user () {
+    return {
+      // name: this.props.navigation.state.params.name,
+      // email: this.props.navigation.state.params.email,
+      // avatar: this.props.navigation.state.params.avatar,
+      name: 'Edgar',
+      id: firebaseService.uid,
+      _id: firebaseService.uid, // need for gifted-chat
+    }
+  }
+
   gotoLocation = () => {
     this.props.navigation.navigate('LocationStack')
   }
@@ -119,7 +166,19 @@ export class Chat extends PureComponent<any, any> {
                 />
               </View>
             </View>
-            <TextInput />
+            {/* <TextInput /> */}
+            <View style={styles.chat}>
+              <GiftedChat
+                messages={this.state.messages}
+                onSend={this.onSend}
+                user={{
+                  _id: 1,
+                }}
+              />
+              {
+                Platform.OS === 'android' && <KeyboardAvoidingView behavior='padding' />
+              }
+            </View>
           </ScrollView>
         </GenericSafeAreaView>
       </>
