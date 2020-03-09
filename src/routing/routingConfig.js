@@ -2,7 +2,7 @@ import { Home } from '../modules/home/Home'
 import { LocationStack } from '../modules/location/LocationStack'
 // import { Location } from '../modules/location/Location'
 // import { Map } from '../modules/location/Map'
-import { Chat } from '../modules/chat/Chat'
+import { ChatStack } from '../modules/chat/ChatStack'
 
 export const config = {
   initialRouteName: 'Home',
@@ -13,10 +13,10 @@ export const config = {
     },
     {
       name: 'Chat',
-      component: Chat,
+      component: ChatStack,
     },
     {
-      name: 'LocationStack',
+      name: 'Location',
       component: LocationStack,
     },
   ],

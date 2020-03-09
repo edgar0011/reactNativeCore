@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import firebase from 'firebase'
-import uuid from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 const config = {
   apiKey: 'AIzaSyDx5BhYhVk5zo3fefU5uqb78CZelnbfnYs',
@@ -69,7 +69,7 @@ class FirebaseService {
       const ref = firebase
         .storage()
         .ref('avatar')
-        .child(uuid.v4())
+        .child(uuidv4())
       const task = ref.put(blob)
 
       return new Promise((resolve, reject) => {
@@ -113,8 +113,10 @@ class FirebaseService {
     })
   }
 
+  currentUser = { uid: uuidv4() }
+
   get uid () {
-    return (firebase.auth().currentUser || { uid: uuid.v4() }).uid
+    return (firebase.auth().currentUser || this.currentUser).uid
   }
 
   get ref () {
@@ -152,6 +154,7 @@ class FirebaseService {
     // eslint-disable-next-line no-plusplus, space-unary-ops
     for (let i = 0; i < messages.length; i ++) {
       const { text, user } = messages[i]
+      console.log(text, user)
       const message = {
         text,
         user,
