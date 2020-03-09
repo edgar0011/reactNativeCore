@@ -1,6 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import firebase from 'firebase'
+import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid'
+
+const uuid = uuidv4
 
 const config = {
   apiKey: 'AIzaSyDx5BhYhVk5zo3fefU5uqb78CZelnbfnYs',
@@ -69,7 +72,7 @@ class FirebaseService {
       const ref = firebase
         .storage()
         .ref('avatar')
-        .child(uuidv4())
+        .child(uuid())
       const task = ref.put(blob)
 
       return new Promise((resolve, reject) => {
@@ -113,7 +116,7 @@ class FirebaseService {
     })
   }
 
-  currentUser = { uid: uuidv4() }
+  currentUser = { uid: uuid() }
 
   get uid () {
     return (firebase.auth().currentUser || this.currentUser).uid
