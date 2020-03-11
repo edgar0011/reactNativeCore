@@ -6,7 +6,7 @@
     "rebuild": "cd android && gradle --refresh-dependencies && cd ../ios && pod install && pod update && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "react-native start --reset-cache",
     "lint": "eslint src",
     "lint:ts": "eslint src --ext js,jsx,ts,tsx",
     "lint:quiet": "eslint src --quiet",
