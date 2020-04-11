@@ -70,8 +70,8 @@ export class Chat extends PureComponent<any, any> {
   }
 
   componentDidMount () {
-    firebaseService.refOn((message) => this.setState((previousState) => ({
-      messages: GiftedChat.append(previousState.messages, message),
+    firebaseService.refOn((message) => this.setState((prevState) => ({
+      messages: GiftedChat.append(prevState.messages, message),
     })))
   }
 

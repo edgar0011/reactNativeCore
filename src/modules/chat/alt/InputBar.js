@@ -30,6 +30,20 @@ export class InputBar extends PureComponent {
     }
   }
 
+  onKeyPress = (event) => {
+    console.log('onKeyPress', event)
+    console.log('onKeyPress, nativeEvent', event.nativeEvent)
+    if (event && event.nativeEvent && event.nativeEvent.key === 'Enter') {
+      console.log(' this.props.onEnter')
+      console.log('this.autogrowInput', this.autogrowInput)
+      console.log('this.autogrowInput.current', this.autogrowInput.current)
+      event.preventDefault()
+      event.stopPropagation()
+      this.props.onEnter && this.props.onEnter(event)
+//      this.autogrowInput.current.clear()
+    }
+  }
+
   render () {
     const { text, onChangeText, onSizeChange, onSendHandler } = this.props
     return (
@@ -37,10 +51,13 @@ export class InputBar extends PureComponent {
         <AutogrowInput
           style={styles.textBox}
           ref={this.autogrowInput}
-          multiline
           defaultHeight={30}
           onChangeText={onChangeText}
           onContentSizeChange={onSizeChange}
+          onKeyPress={this.onKeyPress}
+          onSubmitEditing={this.props.onEnter}
+          returnKeyType='send'
+          blurOnSubmit
           value={text}
         />
         <TouchableHighlight style={styles.sendButton} onPress={onSendHandler}>

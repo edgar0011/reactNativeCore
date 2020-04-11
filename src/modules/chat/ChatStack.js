@@ -14,6 +14,7 @@ export const config = {
     {
       name: 'Contacts',
       component: ChatContacts,
+      initialParams: { chatRoute: 'Chat' },
     },
     {
       name: 'Chat',

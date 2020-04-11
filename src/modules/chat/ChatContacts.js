@@ -24,11 +24,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     borderRadius: 12,
   },
+  badgeStyle: {
+    backgroundColor: '#e01a49',
+  },
+  containerStyle: { position: 'absolute', top: -0, right: -0 },
   title: {
     fontSize: 16,
+    color: '#000000',
   },
-  text: {
-    fontSize: 12,
+  titleOffline: {
+    color: '#999999',
   },
 })
 
@@ -54,6 +59,7 @@ const contacts = [
     name: 'Podpora',
     notifications: 6,
     role: ROLES.SUPPORT,
+    textColor: '#00a78f',
   },
 ]
 
@@ -63,10 +69,17 @@ const Item = memo(({ name, notifications }) => (
     <Badge
       status='warning'
       value={notifications}
-      containerStyle={{ position: 'absolute', top: -0, right: -0 }}
+      containerStyle={styles.containerStyle}
+      badgeStyle={styles.badgeStyle}
     />
   </View>
 ))
+
+Item.displayName = 'Item'
+Item.propTypes = {
+  name: 'string',
+  notifications: 'string',
+}
 
 const keyExtractor = ({ id }) => id
 
@@ -85,7 +98,7 @@ export class ChatContacts extends PureComponent<any, any> {
   )
 
   gotoChat = (contact) => {
-    this.props.navigation.navigate('Chat', { contact })
+    this.props.navigation.navigate(this.props.route.params.chatRoute || 'Chat', { contact })
   }
 
   render () {
