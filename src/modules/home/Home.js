@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 
 export class Home extends PureComponent {
   gotoGeoLocation = () => {
-    this.props.navigation.navigate('LocationStack')
+    this.props.navigation.navigate('Location')
   }
 
   render () {

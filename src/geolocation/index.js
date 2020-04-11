@@ -1,5 +1,7 @@
 import Geolocation from '@react-native-community/geolocation'
 
+Geolocation.requestAuthorization()
+
 export const getCurrentPosition = () => new Promise((resolve, reject) => {
   try {
     Geolocation.getCurrentPosition((info) => {
@@ -10,4 +12,4 @@ export const getCurrentPosition = () => new Promise((resolve, reject) => {
   }
 })
 
-getCurrentPosition().then(console.log)
+// getCurrentPosition().then(console.log)
