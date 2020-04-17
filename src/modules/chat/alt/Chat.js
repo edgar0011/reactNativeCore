@@ -73,12 +73,12 @@ export class Chat extends Component {
   // to move the end back "up" so the last message is visible with the keyboard up
   // Without this, whatever message is the keyboard's height from the bottom will look like the last message.
   keyboardDidShow = () => {
-    this.scrollView.scrollToEnd()
+    this.scrollView.current.scrollToEnd()
   }
 
   // When the keyboard dissapears, this gets the ScrollView to move the last message back down.
   keyboardDidHide = () => {
-    this.scrollView.scrollToEnd()
+    this.scrollView.current.scrollToEnd()
   }
 
   sendMessage = () => {

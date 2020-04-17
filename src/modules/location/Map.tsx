@@ -91,8 +91,8 @@ export class Map extends PureComponent<any, any> {
     const newRegion = {
       longitude: coords.longitude,
       latitude: coords.latitude,
-      longitudeDelta: 0,
-      latitudeDelta: 0,
+      longitudeDelta: 0.02,
+      latitudeDelta: 0.02,
     }
     return (
       <>

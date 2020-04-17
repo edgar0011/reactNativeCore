@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { factory as routingFactory } from '../../routing/routingFactory'
 
 import { ChatContacts } from './ChatContacts'
-import { Chat } from './Chat'
+import { Chat } from './alt/Chat'
 
 const Stack = createStackNavigator()
 
