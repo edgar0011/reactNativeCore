@@ -6,6 +6,14 @@ import { ChatStack } from '../modules/chat/ChatStack'
 
 export const config = {
   initialRouteName: 'Home',
+  tabBarOptions: {
+    labelStyle: {
+      fontSize: 16,
+    },
+    tabStyle: {
+      justifyContent: 'center',
+    },
+  },
   screens: [
     {
       name: 'Home',

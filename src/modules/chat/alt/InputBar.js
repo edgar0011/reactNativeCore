@@ -40,7 +40,7 @@ export class InputBar extends PureComponent {
       event.preventDefault()
       event.stopPropagation()
       this.props.onEnter && this.props.onEnter(event)
-//      this.autogrowInput.current.clear()
+      // this.autogrowInput.current.clear()
     }
   }
 

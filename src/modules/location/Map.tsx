@@ -7,11 +7,12 @@ import {
   StatusBar,
   Button,
   Dimensions,
+  Platform,
 } from 'react-native'
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
-import MapView from 'react-native-maps'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // eslint-disable-next-line import/no-cycle
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     width: '100%',
     minHeight: 300,
-    height: Dimensions.get('window').height * 0.6,
+    height: Dimensions.get('window').height * (Platform.OS === 'ios' ? 0.6 : 0.55),
   },
   map: {
     position: 'absolute',
@@ -116,6 +117,7 @@ export class Map extends PureComponent<any, any> {
             </View>
             <View style={styles.container}>
               <MapView
+                // provider={PROVIDER_GOOGLE}
                 style={styles.map}
                 region={newRegion}
               />

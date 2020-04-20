@@ -92,6 +92,11 @@ export class Chat extends Component {
     ))
   }
 
+  onEnterSendMessage = () => {
+    console.log('onEnterSendMessage')
+    this.sendMessage()
+  }
+
   onChangeInputBarText = (text) => {
     this.setState({
       inputBarText: text,
@@ -133,6 +138,7 @@ export class Chat extends Component {
             </ScrollView>
             <InputBar
               onSendHandler={this.sendMessage}
+              onEnter={this.onEnterSendMessage}
               onSizeChange={this.onInputSizeChange}
               onChangeText={this.onChangeInputBarText}
               text={this.state.inputBarText}
