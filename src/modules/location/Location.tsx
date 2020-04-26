@@ -33,9 +33,15 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  sectionTopContainer: {
+    backgroundColor: Colors.lighter,
+    flexDirection: 'column',
+    marginTop: 120,
+    paddingHorizontal: 10,
+  },
   sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+    marginTop: 10,
+    paddingHorizontal: 10,
   },
   sectionTitle: {
     fontSize: 24,
@@ -43,8 +49,8 @@ const styles = StyleSheet.create({
     color: Colors.black,
   },
   sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
+    marginTop: 5,
+    fontSize: 11,
     fontWeight: '400',
     color: Colors.dark,
   },
@@ -110,7 +116,10 @@ const Item = memo<ItemProps>(({ name, username, email, address, right }) => (
     </View>
   </View>
 ))
-const keyExtractor = ({ id }) => id
+
+Item.displayName = 'Item'
+
+const keyExtractor = ({ id }) => `${id}`
 
 const renderItem = ({ item, index }) => (
   <Item {...item} right={index % 2 === 0} />
@@ -135,18 +144,15 @@ export class Location extends PureComponent<any, LocationState> {
       <>
         <StatusBar barStyle='dark-content' />
         <GenericSafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior='automatic'
-            style={styles.scrollView}
-          >
-            <Text style={styles.header}> LOCATION </Text>
-            <Button
-              title='Go to Map'
-              onPress={this.gotoMap}
-            />
+          <View>
             <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Location</Text>
+              <View
+                style={styles.sectionTopContainer}
+              >
+                <Button
+                  title='Go to Map'
+                  onPress={this.gotoMap}
+                />
                 <Text style={styles.sectionDescription}>
                   {JSON.stringify(location)}
                 </Text>
@@ -160,7 +166,7 @@ export class Location extends PureComponent<any, LocationState> {
                 />
               </View>
             </View>
-          </ScrollView>
+          </View>
         </GenericSafeAreaView>
       </>
     )

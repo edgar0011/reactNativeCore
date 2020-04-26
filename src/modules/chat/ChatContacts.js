@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
 } from 'react-native'
 import { Badge } from 'react-native-elements'
+import PropTypes from 'prop-types'
 
 import { GenericSafeAreaView } from '../../components/common/GenericSafeAreaView'
 
@@ -77,11 +78,11 @@ const Item = memo(({ name, notifications }) => (
 
 Item.displayName = 'Item'
 Item.propTypes = {
-  name: 'string',
-  notifications: 'string',
+  name: PropTypes.string,
+  notifications: PropTypes.oneOfType([PropTypes.numberg, PropTypes.string]),
 }
 
-const keyExtractor = ({ id }) => id
+const keyExtractor = ({ id, name }) => `${id}-${name}`
 
 export class ChatContacts extends PureComponent<any, any> {
   onPressItem = (item) => () => {

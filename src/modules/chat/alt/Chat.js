@@ -3,6 +3,7 @@ import {
   Text, View, ScrollView, Keyboard, StatusBar,
 } from 'react-native'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid'
 import PropTypes from 'prop-types'
 
@@ -42,15 +43,10 @@ export class Chat extends Component {
     }
   }
 
-  // fun keyboard stuff- we use these to get the end of the ScrollView
-  // to "follow" the top of the InputBar as the keyboard rises and falls
-  componentWillMount () {
-    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
-  }
-
   // scroll to bottom when first showing the view
   componentDidMount () {
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this))
     setTimeout(() => {
       this.scrollView.current.scrollToEnd()
     })
@@ -82,7 +78,7 @@ export class Chat extends Component {
   }
 
   sendMessage = () => {
-    this.state.messages.push({ direction: 'right', text: this.state.inputBarText })
+    this.state.messages.push({ id: uuidv4(), direction: 'right', text: this.state.inputBarText })
 
     this.setState((prevState) => (
       {

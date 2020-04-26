@@ -117,7 +117,7 @@ export class Map extends PureComponent<any, any> {
             </View>
             <View style={styles.container}>
               <MapView
-                // provider={PROVIDER_GOOGLE}
+                Xprovider={PROVIDER_GOOGLE}
                 style={styles.map}
                 region={newRegion}
               />

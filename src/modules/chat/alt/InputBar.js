@@ -24,7 +24,7 @@ export class InputBar extends PureComponent {
   // of the InputBar's text to be set from the outside.
   autogrowInput = React.createRef()
 
-  componentWillReceiveProps (nextProps) {
+  componentDidUpdate (nextProps) {
     if (nextProps.text === '') {
       this.autogrowInput.current.resetInputText()
     }
