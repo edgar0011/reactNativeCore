@@ -12,7 +12,7 @@ import {
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import MapView from 'react-native-maps'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // eslint-disable-next-line import/no-cycle
@@ -117,7 +117,6 @@ export class Map extends PureComponent<any, any> {
             </View>
             <View style={styles.container}>
               <MapView
-                Xprovider={PROVIDER_GOOGLE}
                 style={styles.map}
                 region={newRegion}
               />

@@ -1,4 +1,5 @@
 import { Home } from '../modules/home/Home'
+import { User } from '../modules/user/User'
 import { LocationStack } from '../modules/location/LocationStack'
 // import { Location } from '../modules/location/Location'
 // import { Map } from '../modules/location/Map'
@@ -18,6 +19,10 @@ export const config = {
     {
       name: 'Home',
       component: Home,
+    },
+    {
+      name: 'User',
+      component: User,
     },
     {
       name: 'Chat',
