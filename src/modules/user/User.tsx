@@ -1,16 +1,15 @@
 import { Button } from 'react-native-elements'
-import Icon from 'react-native-vector-icons/FontAwesome'
+// import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from 'react-native-vector-icons/Feather'
 // import ImagePicker from 'react-native-image-picker'
 import ImagePicker from 'react-native-image-crop-picker'
 import React, { memo, PureComponent } from 'react'
 import {
   StyleSheet,
-  ScrollView,
   TouchableHighlight,
   View,
   Text,
   StatusBar,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Image,
   FlatList,
 } from 'react-native'
@@ -67,15 +66,13 @@ const butonIcon = (
     name='upload'
     size={15}
     color='white'
-    padding='4'
-    margin='10'
-    iconStyle={{ marginRight: '4' }}
+    margin='4'
   />
 )
 
 const keyExtractor = ({ filename, path }) => `${filename}-${path}`
 
-const ImageItem = memo(({ path, filename }) => (
+const ImageItem = memo<{ path: string; filename: string }>(({ path, filename }) => (
   <View>
     <Text>{filename}</Text>
     <Image style={{ width: 100, height: 100 }} source={{ uri: path }} />
@@ -84,15 +81,16 @@ const ImageItem = memo(({ path, filename }) => (
 
 ImageItem.displayName = 'ImageItem'
 
-export class User extends PureComponent {
-  state = {
+type UserState = {
+  images: string[]
+}
+export class User extends PureComponent<any, UserState> {
+  state: UserState = {
     images: [],
   }
 
   renderItem = ({ item }) => (
-    <TouchableHighlight
-      // onPress={this.onPressItem(item)}
-    >
+    <TouchableHighlight>
       <ImageItem {...item} />
     </TouchableHighlight>
   )
@@ -125,7 +123,6 @@ export class User extends PureComponent {
         <StatusBar barStyle='dark-content' />
         <GenericSafeAreaView>
           <View
-            contentInsetAdjustmentBehavior='automatic'
             style={styles.scrollView}
           >
             <Text style={styles.sectionTitle}>User</Text>
