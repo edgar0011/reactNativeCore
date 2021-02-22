@@ -103,7 +103,7 @@ class FirebaseService {
           alert(`Error update avatar. Error:${error.message}`)
         })
     } else {
-      console.log("can't update avatar, user is not login.")
+      console.log('can\'t update avatar, user is not login.')
       alert('Unable to update avatar. You must login first.')
     }
   }

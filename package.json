@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "rebuild": "cd android && gradle --refresh-dependencies && cd ../ios && pod install && pod update && cd ..",
+    "rebuild:android": "cd android && gradle --refresh-dependencies && cd ..",
+    "rebuild:ios": "cd ios && arch -x86_64 pod install && arch -x86_64 pod update && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",

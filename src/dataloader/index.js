@@ -3,7 +3,7 @@ import { Alert } from 'react-native'
 
 export const getData = (url, params) => axios.get(url, { params })
 
-export const load = () => getData(`https://jsonplaceholder.typicode.com/users`)
+export const load = () => getData('https://jsonplaceholder.typicode.com/users')
   .then((res) => {
     const persons = res.data
     console.log(persons)
