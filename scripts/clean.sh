@@ -1,8 +1,10 @@
 #!/bin/bash
 set -e
 
-rm -rf node_modules
+
 watchman watch-del-all
+rm -rf node_modules
 yarn cache clean
 yarn
 yarn start -- --reset-cache
+rm -rf /tmp/metro-*

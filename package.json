@@ -5,7 +5,8 @@
   "scripts": {
     "rebuild": "cd android && gradle --refresh-dependencies && cd ../ios && pod install && pod update && cd ..",
     "rebuild:android": "cd android && gradle --refresh-dependencies && cd ..",
-    "rebuild:ios": "cd ios && arch -x86_64 pod install && arch -x86_64 pod update && cd ..",
+    "rebuildArm:ios": "cd ios && arch -x86_64 pod install && arch -x86_64 pod update && cd ..",
+    "rebuild:ios": "cd ios && pod install && pod update && cd ..",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",
@@ -25,6 +26,7 @@
     "@babel/preset-typescript": "^7.7.4",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "^0.1.6",
+    "@react-native-community/toolbar-android": "^0.1.0-rc.2",
     "@react-navigation/bottom-tabs": "^5.1.1",
     "@react-navigation/native": "^5.0.7",
     "@react-navigation/stack": "^5.0.8",
