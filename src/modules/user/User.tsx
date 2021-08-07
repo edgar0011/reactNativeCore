@@ -66,7 +66,6 @@ const butonIcon = (
     name='upload'
     size={15}
     color='white'
-    margin='4'
   />
 )
 
