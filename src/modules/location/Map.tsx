@@ -12,7 +12,7 @@ import {
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen'
-import MapView from 'react-native-maps'
+// import MapView from 'react-native-maps'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 // eslint-disable-next-line import/no-cycle
@@ -116,10 +116,11 @@ export class Map extends PureComponent<any, any> {
               </View>
             </View>
             <View style={styles.container}>
-              <MapView
+              <Text> MAPVIEW PLACEHOLDER</Text>
+              {/* <MapView
                 style={styles.map}
                 region={newRegion}
-              />
+              /> */}
             </View>
             <Text>{JSON.stringify(coords)}</Text>
           </ScrollView>
